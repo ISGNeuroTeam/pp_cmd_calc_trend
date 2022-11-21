@@ -21,7 +21,8 @@ def calc_trend(
     if window is None:
         trend = _calc_global_trend(df, value_col)
         df[trend_col] = trend
-        return df[[trend_col, ]]
+        return df
+
     segments = (
         df
         .resample(f"{window}", origin="start").mean()
@@ -45,4 +46,4 @@ def calc_trend(
     if trend_col not in df.columns:
         df[trend_col] = 0  # np.NAN
 
-    return df[[trend_col, trend_upper_col, trend_lower_col]]
+    return df

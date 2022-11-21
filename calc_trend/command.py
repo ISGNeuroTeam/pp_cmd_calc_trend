@@ -34,8 +34,8 @@ class CalcTrendCommand(BaseCommand):
         self.logger.debug(f'Command calc_trend: value_col = {value_col}')
         self.logger.debug(f'Command calc_trend: window = {window}')
 
-        df['_dt'] = pd.to_datetime(df[time_field])
-        df.set_index('_dt', inplace=True, unit='s')
+        df['_dt'] = pd.to_datetime(df[time_field], unit='s')
+        df.set_index('_dt', inplace=True)
 
         df = calc_trend(df, value_col, window)
 
